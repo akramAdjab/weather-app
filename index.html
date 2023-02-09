@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- LINKING POPPINS FONT FROM GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- LINKING CUSTOM SASS STYLE -->
+    <link rel="stylesheet" href="src/sass/style.scss" />
+
+    <!-- LINKING JS SCRIPT -->
+    <script defer type="module" src="src/js/controller.js"></script>
+
+    <title>Weather app</title>
+  </head>
+  <body>
+    <!-- WEATHER APP -->
+    <main class="weather container">
+      <!-- <img
+        src="src/img/hero.jpg"
+        alt="Weather image condition description"
+        class="weather__img"
+      /> -->
+
+      <!-- WEATHER DESCRIPTION SECTION -->
+      <section class="weather__description-box">
+        <!-- <div class="weather__description"> -->
+        <a href="#" class="weather__logo">weatherly</a>
+        <div class="weather__clock">
+          <p class="weahter__clock--time time">16:46</p>
+          <p class="weahter__clock--day day">WED</p>
+          <p class="weahter__clock--date date">02/07</p>
+        </div>
+        <!-- <h1 class="weather__title">
+          <span class="weather__temp temp">08&deg;</span>
+          <span class="weather__location location">London</span>
+          <span class="weather__condition weather-condition">
+            <div class="weather__icon"></div>
+            Rainy
+          </span>
+        </h1> -->
+        <!-- </div> -->
+      </section>
+
+      <!-- WEATHER SEARCH AND INFO SECTION -->
+      <section class="weather__info">
+        <!-- SEARCH BOX -->
+        <div class="weather__search">
+          <input
+            type="text"
+            class="weather__search--box"
+            placeholder="Another location"
+          />
+          <button class="weather__search--btn"></button>
+        </div>
+
+        <div class="weather__info--container">
+          <!-- DISPLAY NEIGHBOURS LOCATIONS -->
+          <!-- <div class="weather__neighbours">
+            <p class="weather__neighbour">Manchester</p>
+            <p class="weather__neighbour">Cambridge</p>
+            <p class="weather__neighbour">Liverpool</p>
+            <p class="weather__neighbour">Birmingham</p>
+          </div> -->
+
+          <!-- DISPLAY WEATHER DETAILS -->
+          <!-- <div class="weather__details">
+            <h3 class="weather__sub-title">Weather details</h3>
+
+            <!-- CLOUDY 
+            <p class="weather__detail weather__cloudy">
+              <span>Clody</span>
+              <span class="weather__cloudy--percentage">86%</span>
+            </p>
+
+            <!-- HUMIDITY 
+            <p class="weather__detail weather__cloudy">
+              <span>Humidity</span>
+              <span class="weather__cloudy--percentage">62%</span>
+            </p>
+
+            <!-- WIND 
+            <p class="weather__detail weather__cloudy">
+              <span>Wind</span>
+              <span class="weather__cloudy--percentage">8km/h</span>
+            </p>
+
+            <!-- RAIN 
+            <p class="weather__detail weather__cloudy">
+              <span>Rain</span>
+              <span class="weather__cloudy--percentage">8mm</span>
+            </p>
+          </div> -->
+        </div>
+      </section>
+    </main>
+
+    <div class="overlay hidden">
+      <h2 class="overlay__heading"></h2>
+    </div>
+  </body>
+</html>
