@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="src/sass/style.scss" />
 
     <!-- LINKING JS SCRIPT -->
-    <script defer type="module" src="src/js/controller.js"></script>
+    <!-- <script defer type="module" src="src/js/controller.js"></script> -->
 
     <title>Weather app</title>
   </head>
@@ -39,15 +39,16 @@
           <p class="weahter__clock--day day">WED</p>
           <p class="weahter__clock--date date">02/07</p>
         </div>
-        <!-- <h1 class="weather__title">
-          <span class="weather__temp temp">08&deg;</span>
-          <span class="weather__location location">London</span>
-          <span class="weather__condition weather-condition">
-            <div class="weather__icon"></div>
-            Rainy
-          </span>
-        </h1> -->
-        <!-- </div> -->
+        <div class="weather__title-container">
+          <h1 class="weather__title">
+            <span class="weather__temp temp">08&deg;</span>
+            <span class="weather__location location">London</span>
+            <!-- <span class="weather__condition weather-condition">
+              <div class="weather__icon"></div>
+              Rainy
+            </span> -->
+          </h1>
+        </div>
       </section>
 
       <!-- WEATHER SEARCH AND INFO SECTION -->
@@ -56,10 +57,10 @@
         <div class="weather__search">
           <input
             type="text"
-            class="weather__search--box"
+            class="weather__search--box input-box"
             placeholder="Another location"
           />
-          <button class="weather__search--btn"></button>
+          <button class="weather__search--btn btn"></button>
         </div>
 
         <div class="weather__info--container">
@@ -72,39 +73,44 @@
           </div> -->
 
           <!-- DISPLAY WEATHER DETAILS -->
-          <!-- <div class="weather__details">
+          <div class="weather__details">
             <h3 class="weather__sub-title">Weather details</h3>
 
-            <!-- CLOUDY 
-            <p class="weather__detail weather__cloudy">
-              <span>Clody</span>
-              <span class="weather__cloudy--percentage">86%</span>
-            </p>
+            <div class="weather__detail--container">
+              <!-- CLOUDY -->
+              <p class="weather__detail">
+                <span>Clody</span>
+                <span class="weather__cloudy--percentage">86%</span>
+              </p>
 
-            <!-- HUMIDITY 
-            <p class="weather__detail weather__cloudy">
-              <span>Humidity</span>
-              <span class="weather__cloudy--percentage">62%</span>
-            </p>
+              <!-- HUMIDITY -->
+              <p class="weather__detail">
+                <span>Humidity</span>
+                <span class="weather__cloudy--percentage">62%</span>
+              </p>
 
-            <!-- WIND 
-            <p class="weather__detail weather__cloudy">
-              <span>Wind</span>
-              <span class="weather__cloudy--percentage">8km/h</span>
-            </p>
+              <!-- WIND -->
+              <p class="weather__detail">
+                <span>Wind</span>
+                <span class="weather__cloudy--percentage">8km/h</span>
+              </p>
 
-            <!-- RAIN 
-            <p class="weather__detail weather__cloudy">
-              <span>Rain</span>
-              <span class="weather__cloudy--percentage">8mm</span>
-            </p>
-          </div> -->
+              <!-- RAIN -->
+              <p class="weather__detail">
+                <span>Rain</span>
+                <span class="weather__cloudy--percentage">8mm</span>
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </main>
 
-    <div class="overlay hidden">
-      <h2 class="overlay__heading"></h2>
+    <div class="spin hidden">
+      <hr />
+      <hr />
+      <hr />
+      <hr />
     </div>
   </body>
 </html>

@@ -4,22 +4,37 @@ import view from './view.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-const getCoords = async function () {
+const weatherData = async function () {
   try {
-    navigator.geolocation.getCurrentPosition(
-      model.getWeatherInfo.bind(this),
-      () => console.log('error!!!!!!!!!!!')
-    );
+    // Render Spinner
+    view.toggleSpinner();
+
+    const data = await model.weatherInfo();
+    if (data) view.toggleSpinner();
+    view.renderWeather(data);
   } catch (err) {
-    console.error(err);
+    view.renderError(err.message);
+  }
+};
+
+const searchData = async function () {
+  try {
+    // Render Spinner
+    view.toggleSpinner();
+
+    const query = view.createQuery();
+    if (!query) return;
+    const data = await model.searchWeather(query);
+    if (data) view.toggleSpinner();
+    view.renderWeather(data);
+  } catch (err) {
+    view.renderError(err.message);
   }
 };
 
 const init = function () {
   view.renderTime();
-  getCoords();
-
-  // temp
-  // console.log(model.weatherInfo.state);
+  weatherData();
+  view.addHanlderSearch(searchData);
 };
 init();

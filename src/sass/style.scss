@@ -38,10 +38,36 @@
   --height: 100vh;
 }
 
+// ---------- MIXINS ---------- //
+@mixin respond($bp) {
+  @if $bp == tab-land {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    }
+  }
+
+  @if $bp == tab-por {
+    @media only screen and (max-width: 45em) {
+      @content;
+    }
+  }
+
+  @if $bp == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    }
+  }
+}
+
 // ---------- EXTENDS ---------- //
 %flexColumn {
   display: flex;
   flex-direction: column;
+}
+
+%blurBackground {
+  backdrop-filter: blur(2rem);
+  background-color: rgba(0, 0, 0, 0.35);
 }
 
 // ---------- BASE ---------- //
@@ -56,6 +82,11 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+
+  // Media-Querie for Tab-land
+  @include respond(tab-land) {
+    font-size: 50%;
+  }
 }
 
 body {
@@ -65,6 +96,11 @@ body {
   font-family: var(--font-primary), sans-serif;
   font-weight: var(--font-weight-medium);
   line-height: 1;
+
+  // Media-Querie for Phone
+  // @include respond(phone) {
+  //   position: relative;
+  // }
 }
 
 // ---------- WEATHER APP ---------- //
@@ -77,6 +113,11 @@ body {
 
   position: relative;
   display: flex;
+
+  // Media-Querie for Phone
+  @include respond(phone) {
+    flex-direction: column;
+  }
 
   // IMAGE BACKGROUND
   &__img {
@@ -100,6 +141,16 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--ws-md);
+
+    // Media-Querie for Tab-por
+    @include respond(tab-por) {
+      padding: var(--ws-md);
+    }
+
+    // Media-Querie for Phone
+    @include respond(phone) {
+      flex: 1;
+    }
   }
 
   &__logo {
@@ -116,6 +167,11 @@ body {
   &--time {
     font-size: 6.2rem;
     font-weight: var(--font-weight-xmedium);
+
+    // Media-Querie for Phone
+    @include respond(phone) {
+      font-size: 5.2rem;
+    }
   }
 
   &--day,
@@ -127,60 +183,96 @@ body {
     font-size: 8.6rem;
     text-transform: uppercase;
     letter-spacing: -5px;
+
+    // Media-Querie for Phone
+    @include respond(phone) {
+      font-size: 7.6rem;
+    }
   }
 
   &--date {
     font-size: 7.4rem;
+
+    // Media-Querie for Phone
+    @include respond(phone) {
+      font-size: 6.4rem;
+    }
   }
 }
 
 .weather {
-  &__title {
+  &__title-container {
     margin-top: auto;
+  }
+
+  &__title {
     font-weight: var(--font-weight-medium);
 
     display: flex;
     align-items: flex-end;
-    gap: var(--ws-md);
+
+    // Media-Querie for Phone
+    @include respond(phone) {
+      padding-bottom: var(--ws-md);
+    }
   }
 
   &__temp {
+    margin-right: var(--ws-sm);
     font-size: 9.8rem;
     line-height: 0.8;
+
+    // Media-Querie for Phone
+    @include respond(phone) {
+      font-size: 8.8rem;
+    }
   }
 
   &__location {
+    margin-right: var(--ws-md);
     font-size: var(--font-size-xlg);
     font-weight: var(--font-weight-bold);
     letter-spacing: -2px;
     line-height: 0.85;
+
+    // Media-Querie for Phone
+    @include respond(phone) {
+      font-size: 5.2rem;
+    }
   }
 
-  &__condition {
-    font-size: var(--font-size-md);
+  // &__condition {
+  //   font-size: var(--font-size-md);
 
-    @extend %flexColumn;
-    align-items: center;
-    // gap: var(--ws-sm);
-    gap: 4px;
-  }
+  //   @extend %flexColumn;
+  //   align-items: center;
+  //   gap: 4px;
+  // }
 
-  &__icon {
-    width: 4.8rem;
-    height: 4.8rem;
-    mask-image: url(../img/svg/rain.svg);
-    mask-size: cover;
-    background-color: var(--color-primary);
-    background-image: none;
-  }
+  // &__icon {
+  //   width: 4.8rem;
+  //   height: 4.8rem;
+  //   mask-image: url(../img/svg/rain.svg);
+  //   mask-size: cover;
+  //   background-color: var(--color-primary);
+  //   background-image: none;
+  // }
 }
 
 // --- SEARCH AND INFO SECTION --- //
 .weather {
   &__info {
     flex: 1;
-    backdrop-filter: blur(2rem);
-    background-color: rgba(0, 0, 0, 0.35);
+    @extend %blurBackground;
+
+    // Media-Querie for Phone
+    @include respond(phone) {
+      margin-top: auto;
+      border-radius: 12px 12px 0 0;
+
+      flex: 0;
+      position: relative;
+    }
 
     &--container {
       color: var(--color-secondary);
@@ -188,6 +280,34 @@ body {
 
       @extend %flexColumn;
       gap: var(--ws-lg);
+
+      // Media-Querie for Tab-por
+      @include respond(tab-por) {
+        padding: 0 var(--ws-md) var(--ws-lg);
+      }
+
+      // Media-Querie for Phone
+      @include respond(phone) {
+        padding: var(--ws-lg);
+      }
+    }
+
+    &::before {
+      // Media-Querie for Phone
+      @include respond(phone) {
+        content: '';
+        width: 10%;
+        height: 3px;
+        border-radius: 10rem;
+        background-color: var(--color-primary);
+        display: block;
+
+        position: absolute;
+        top: var(--ws-sm);
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+      }
     }
   }
 }
@@ -199,6 +319,19 @@ body {
 
     display: flex;
     align-items: flex-end;
+
+    // Media-Querie for Tab-por
+    @include respond(tab-por) {
+      padding: 0 0 var(--ws-lg) var(--ws-lg);
+    }
+
+    // Media-Querie for Phone
+    @include respond(phone) {
+      // position: absolute;
+      // top: 0;
+      // right: 0;
+      display: none;
+    }
 
     ::-webkit-input-placeholder {
       color: var(--color-secondary);
@@ -214,7 +347,10 @@ body {
       background-color: transparent;
       transition: all 0.3s;
 
-      flex: 0 0 60%;
+      // Media-Querie for Tab-por
+      @include respond(tab-por) {
+        width: 60%;
+      }
 
       &:focus {
         border-bottom-color: var(--color-primary);
@@ -224,8 +360,6 @@ body {
     &--btn {
       margin-left: auto;
       padding: var(--ws-lg);
-      font-size: var(--font-size-sm);
-      font-family: inherit;
       border: none;
       background-color: var(--color-tertiary);
       cursor: pointer;
@@ -269,17 +403,23 @@ body {
 
     @extend %flexColumn;
     gap: var(--ws-md);
+
+    // Media-Querie for Phone
+    @include respond(phone) {
+      padding: 0;
+      border-bottom: none;
+    }
   }
 
   // NEIGHBOUR
-  &__neighbour {
-    cursor: pointer;
-    transition: all 0.3s;
+  // &__neighbour {
+  //   cursor: pointer;
+  //   transition: all 0.3s;
 
-    &:hover {
-      color: var(--color-primary);
-    }
-  }
+  //   &:hover {
+  //     color: var(--color-primary);
+  //   }
+  // }
 
   &__sub-title {
     color: var(--color-primary);
@@ -288,9 +428,27 @@ body {
     font-weight: var(--font-weight-medium);
   }
 
+  &__detail--container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ws-md);
+    // Media-Querie for Phone
+    @include respond(phone) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
   &__detail {
     display: flex;
     justify-content: space-between;
+
+    // Media-Querie for Phone
+    @include respond(phone) {
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: var(--ws-sm);
+    }
 
     & span:last-child {
       color: var(--color-primary);
@@ -298,29 +456,79 @@ body {
   }
 }
 
-// --- OVERLAY --- //
-.overlay {
-  width: 100%;
-  height: var(--height);
-  backdrop-filter: blur(1rem);
+// --- ERROR --- //
+.weather {
+  &__title-error {
+    padding: var(--ws-lg);
+    border-radius: 12px;
+    @extend %blurBackground;
+
+    display: grid;
+    place-items: center;
+  }
+
+  &__error {
+    line-height: 1.2;
+  }
+}
+
+// --- SPIN --- //
+.spin {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 5px;
+  transform-origin: center center;
+  // transform: translate(-50%, -50%) rotate(135deg);
+  transform: rotate(135deg);
 
   position: absolute;
-  top: 0;
-  left: 0;
+  bottom: 2rem;
+  right: 1rem;
+}
+.spin hr {
+  width: 40%;
+  height: 40%;
+  margin: 0;
+  border: 0;
+  border-radius: 50%;
+  animation: spinner 2s ease infinite;
 
-  display: grid;
-  place-items: center;
+  position: absolute;
+}
 
-  &__heading {
-    width: 50%;
-    text-align: center;
-    text-transform: uppercase;
-    line-height: 1.5;
+.spin :first-child {
+  background: #19a68c;
+  animation-delay: -1.5s;
+}
+.spin :nth-child(2) {
+  background: #f63d3a;
+  animation-delay: -1s;
+}
+.spin :nth-child(3) {
+  background: #fda543;
+  animation-delay: -0.5s;
+}
+.spin :last-child {
+  background: #193b48;
+}
+
+@keyframes spinner {
+  0%,
+  100% {
+    transform: translateX(200%);
+  }
+  25% {
+    transform: translateY(200%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateY(0);
   }
 }
 
 .hidden {
-  opacity: 0;
+  display: none;
   user-select: none;
-  transition: all 0.3s;
 }
